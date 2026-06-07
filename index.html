@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcos & Carolina — 13.02.2027</title>
+  <meta name="description" content="Estamos por casarnos. Te invitamos a celebrar con nosotros el 13 de Febrero de 2027." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --verde:       #4a6741;
+      --verde-claro: #7a9e6f;
+      --verde-suave: #c8d8c2;
+      --crema:       #f7f4ef;
+      --crema-oscura:#ede8df;
+      --marron:      #8b7355;
+      --texto:       #2c2c2c;
+      --blanco:      #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--crema); color: var(--texto); overflow-x: hidden; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 60px 24px 80px;
+      background: var(--crema); position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(74,103,65,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(200,216,194,.4) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(90px, 24vw, 160px); font-weight: 300; font-style: italic;
+      color: var(--verde); line-height: .9; letter-spacing: -4px; margin-bottom: 24px;
+      opacity: 0; animation: fadeUp .9s .2s ease forwards;
+    }
+    .hero-names {
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-size: clamp(11px, 2.5vw, 14px); letter-spacing: .35em; text-transform: uppercase;
+      color: var(--verde); margin-bottom: 12px;
+      opacity: 0; animation: fadeUp .9s .4s ease forwards;
+    }
+    .hero-ampersand {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(28px, 6vw, 42px); color: var(--marron); margin: 0 10px;
+    }
+    .hero-date {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(13px, 3vw, 16px);
+      font-weight: 400; letter-spacing: .2em; color: var(--marron); margin-bottom: 40px;
+      opacity: 0; animation: fadeUp .9s .5s ease forwards;
+    }
+    .divider-leaf {
+      display: flex; align-items: center; gap: 14px; margin: 0 auto 40px;
+      width: fit-content; opacity: 0; animation: fadeUp .9s .6s ease forwards;
+    }
+    .divider-leaf::before, .divider-leaf::after {
+      content: ''; display: block; width: 60px; height: 1px; background: var(--verde-claro);
+    }
+    .divider-leaf span { font-size: 18px; color: var(--verde); }
+    .hero-tag {
+      font-family: 'Jost', sans-serif; font-weight: 300; font-size: 13px;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--verde);
+      background: rgba(74,103,65,.08); border: 1px solid rgba(74,103,65,.2);
+      padding: 8px 22px; border-radius: 40px; margin-bottom: 56px;
+      opacity: 0; animation: fadeUp .9s .7s ease forwards;
+    }
+    .countdown { display: flex; gap: 24px; opacity: 0; animation: fadeUp .9s .85s ease forwards; }
+    .cd-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .cd-num {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 9vw, 56px);
+      font-weight: 300; color: var(--verde); line-height: 1; min-width: 60px; text-align: center;
+    }
+    .cd-label { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--marron); }
+    .cd-sep {
+      font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--verde-claro);
+      line-height: 1.1; align-self: flex-start; padding-top: 6px;
+    }
+    .scroll-cue {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      opacity: 0; animation: fadeUp .9s 1.4s ease forwards;
+    }
+    .scroll-cue span { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--verde-claro); }
+    .scroll-arrow {
+      width: 18px; height: 18px; border-right: 1.5px solid var(--verde-claro);
+      border-bottom: 1.5px solid var(--verde-claro); transform: rotate(45deg);
+      animation: bounce 1.6s infinite;
+    }
+
+    /* ── SECCIONES COMUNES ── */
+    section { padding: 80px 24px; max-width: 540px; margin: 0 auto; }
+    .section-label { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--verde-claro); margin-bottom: 14px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 38px); font-weight: 400; color: var(--verde); margin-bottom: 20px; line-height: 1.2; }
+    .section-body { font-weight: 300; font-size: 15px; line-height: 1.8; color: #555; }
+    .card { background: var(--blanco); border-radius: 20px; padding: 40px 32px; box-shadow: 0 4px 30px rgba(74,103,65,.07); }
+
+    /* ── LUGAR ── */
+    .lugar-card { background: var(--verde); border-radius: 20px; padding: 40px 32px; text-align: center; color: var(--blanco); }
+    .lugar-card .section-label { color: var(--verde-suave); }
+    .lugar-card .section-title { color: var(--blanco); }
+    .lugar-card .section-body  { color: rgba(255,255,255,.8); }
+    .map-btn {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 28px;
+      background: var(--blanco); color: var(--verde); font-family: 'Jost', sans-serif;
+      font-weight: 500; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none; padding: 13px 28px; border-radius: 40px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .map-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+    .map-btn svg { flex-shrink: 0; }
+
+    /* ── BANCO ── */
+    .banco-card { background: var(--crema-oscura); border-radius: 20px; padding: 32px 28px; margin-top: 28px; }
+    .banco-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid rgba(139,115,85,.15); gap: 12px; }
+    .banco-row:last-child { border-bottom: none; }
+    .banco-key { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--marron); white-space: nowrap; }
+    .banco-val { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--verde); text-align: right; word-break: break-all; }
+
+    /* ── BOTONES ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      background: var(--verde); color: var(--blanco); font-family: 'Jost', sans-serif;
+      font-weight: 500; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+      text-decoration: none; padding: 15px 32px; border-radius: 40px; width: 100%;
+      margin-top: 28px; transition: background .2s, transform .2s, box-shadow .2s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: #3a5233; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(74,103,65,.28); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      background: transparent; color: var(--verde); border: 1.5px solid var(--verde);
+      font-family: 'Jost', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none; padding: 14px 32px; border-radius: 40px;
+      width: 100%; margin-top: 14px; transition: background .2s, color .2s, transform .2s;
+    }
+    .btn-ghost:hover { background: var(--verde); color: var(--blanco); transform: translateY(-2px); }
+
+    /* ── SEPARADORES ── */
+    .sep { text-align: center; margin: 0 auto; padding: 0 24px 72px; max-width: 540px; }
+    .sep-line { display: flex; align-items: center; gap: 16px; }
+    .sep-line::before, .sep-line::after { content: ''; flex: 1; height: 1px; background: var(--crema-oscura); }
+    .sep-icon { font-size: 20px; color: var(--verde-claro); }
+
+    /* ── FOOTER ── */
+    footer { position: relative; overflow: hidden; }
+    .footer-bg { position: absolute; inset: 0; background-size: cover; background-position: center 30%; filter: brightness(.35) saturate(.7); }
+    .footer-content { position: relative; z-index: 2; padding: 72px 24px; text-align: center; color: rgba(255,255,255,.7); }
+    footer .foot-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-style: italic; color: var(--blanco); margin-bottom: 8px; font-weight: 300; }
+    footer .foot-date { font-size: 12px; letter-spacing: .25em; text-transform: uppercase; margin-bottom: 32px; color: rgba(255,255,255,.7); }
+    footer small { font-size: 11px; letter-spacing: .1em; opacity: .5; color: var(--blanco); }
+
+    /* ── ANIMACIONES ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounce { 0%, 100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(5px); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── SLIDESHOW ── */
+    .slideshow-section { padding: 80px 0; max-width: 100%; overflow: hidden; }
+    .slideshow-header { max-width: 540px; margin: 0 auto 32px; padding: 0 24px; }
+    .slideshow-track-wrap { position: relative; width: 100%; overflow: hidden; }
+    .slideshow-track { display: flex; gap: 14px; transition: transform .5s cubic-bezier(.4,0,.2,1); padding: 0 24px; will-change: transform; }
+    .slide { flex-shrink: 0; width: 72vw; max-width: 300px; aspect-ratio: 3/4; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.14); }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .slide:hover img { transform: scale(1.04); }
+    .slideshow-dots { display: flex; justify-content: center; gap: 8px; margin-top: 22px; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--verde-suave); cursor: pointer; transition: background .2s, transform .2s; }
+    .dot.active { background: var(--verde); transform: scale(1.4); }
+    .slide-btn {
+      position: absolute; top: 50%; transform: translateY(-50%); background: var(--blanco);
+      border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.15); z-index: 10;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .slide-btn:hover { transform: translateY(-50%) scale(1.08); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+    .slide-btn.prev { left: 12px; }
+    .slide-btn.next { right: 12px; }
+    .slide-btn svg { color: var(--verde); }
+
+    /* ── DRESS CODE ── */
+    .dress-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--crema-oscura); }
+    .dress-top { background: var(--verde); padding: 36px 32px 28px; text-align: center; }
+    .dress-icon { font-size: 36px; margin-bottom: 12px; }
+    .dress-bottom { background: var(--blanco); padding: 28px 32px; }
+    .dress-label-small { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--marron); margin-bottom: 16px; }
+    .dress-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 30px; font-size: 12px; font-weight: 400; letter-spacing: .06em; }
+    .chip.avoid { background: #fdf0ef; color: #a05a50; border: 1px solid #f5c8c4; }
+    .chip.avoid::before { content: '✕'; font-size: 10px; }
+
+    /* ── CALENDAR WIDGET ── */
+    .calendar-widget { background: var(--blanco); border-radius: 20px; padding: 28px; box-shadow: 0 4px 30px rgba(74,103,65,.07); margin-top: 28px; user-select: none; }
+    .cal-header { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--verde); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 20px; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+    .cal-day-name { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--marron); padding-bottom: 8px; }
+    .cal-day { padding: 7px 2px; font-size: 13px; color: var(--texto); border-radius: 8px; }
+    .cal-day.highlight { background: var(--verde); color: var(--blanco); font-weight: 500; border-radius: 50%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
+
+    /* ── BOTÓN AGREGAR AL CALENDARIO ── */
+    .cal-buttons { margin-top: 20px; display: flex; flex-direction: column; }
+    .cal-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: 'Jost', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none; padding: 14px 28px; border-radius: 40px;
+      width: 100%; transition: transform .2s, box-shadow .2s, background .2s; cursor: pointer; border: none;
+    }
+    .cal-btn-google { background: var(--verde); color: var(--blanco); }
+    .cal-btn-google:hover { background: #3a5233; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(74,103,65,.28); }
+    .cal-btn svg { flex-shrink: 0; }
+    .cal-btn-label { text-align: center; font-size: 11px; letter-spacing: .1em; color: var(--marron); margin-top: 8px; opacity: .7; }
+
+    /* ── MUSIC BAR ── */
+    #music-bar {
+      position: fixed; top: 42px; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 600px; z-index: 999;
+      background: rgba(247,244,239,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--verde-suave); padding: 10px 20px; display: flex; align-items: center; gap: 12px;
+    }
+    #music-bar button { background: var(--verde); border: none; border-radius: 50%; width: 36px; height: 36px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s, transform .2s; }
+    #music-bar button:hover { background: var(--verde-claro); transform: scale(1.07); }
+    #music-bar button svg { fill: white; }
+    .music-info { flex: 1; overflow: hidden; }
+    .music-title { font-size: 12px; font-weight: 500; color: var(--verde); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .music-sub { font-size: 10px; letter-spacing: .12em; color: var(--marron); text-transform: uppercase; }
+    .music-waves { display: flex; align-items: flex-end; gap: 2px; height: 20px; }
+    .music-waves span { display: block; width: 3px; background: var(--verde-claro); border-radius: 2px; animation: wave 1.2s ease-in-out infinite; }
+    .music-waves span:nth-child(1){ height: 8px;  animation-delay: 0s; }
+    .music-waves span:nth-child(2){ height: 14px; animation-delay: .15s; }
+    .music-waves span:nth-child(3){ height: 10px; animation-delay: .3s; }
+    .music-waves span:nth-child(4){ height: 16px; animation-delay: .45s; }
+    .music-waves span:nth-child(5){ height: 8px;  animation-delay: .6s; }
+    .music-paused .music-waves span { animation-play-state: paused; }
+    @keyframes wave { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.4); } }
+
+    /* ── ALOJAMIENTO ── */
+    .aloj-card { background: var(--blanco); border-radius: 24px; padding: 40px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 4px 28px rgba(74,103,65,.07); }
+    .hotel-list { width: 100%; margin-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+    .hotel-item { background: var(--crema); border: 1px solid var(--crema-oscura); border-radius: 14px; padding: 16px 20px; text-align: left; font-size: 14px; font-weight: 400; line-height: 1.55; color: var(--verde); text-decoration: none; display: block; transition: background .2s, transform .2s; }
+    .hotel-item:hover { background: var(--crema-oscura); transform: translateY(-1px); }
+    .hotel-item span { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--marron); font-weight: 400; margin-top: 3px; }
+
+    /* ── INSTAGRAM WALL ── */
+    .instagram-card { background: var(--blanco); border-radius: 24px; padding: 40px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 4px 28px rgba(74,103,65,.07); }
+    .instagram-handle { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; color: var(--verde); margin: 12px 0 8px; }
+    .instagram-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--verde-suave); border-radius: 16px; margin-top: 20px; display: flex; align-items: center; justify-content: center; }
+    .instagram-placeholder svg { opacity: .35; color: var(--verde); }
+
+    /* ── PALETA DRESS CODE ── */
+    .dress-palette { display: flex; gap: 10px; justify-content: center; margin: 20px 0 8px; }
+    .palette-dot { width: 42px; height: 42px; border-radius: 50%; border: 2px solid rgba(255,255,255,.6); box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+
+    /* ══ PIXELS NAV ══ */
+    .pixels-nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 20px; background: rgba(2,6,20,0.95); border-bottom: 1px solid rgba(201,165,90,0.2); position: fixed; top: 0; left: 0; right: 0; z-index: 10000; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); min-height: 42px; }
+    .pixels-nav a.nav-inicio { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,232,213,0.65); text-decoration: none; transition: color .3s; }
+    .pixels-nav a.nav-inicio:hover { color: #E8D08A; }
+    .pixels-nav .nav-logo img { height: 26px; width: auto; display: block; filter: none; }
+
+    /* ══ PIXELS FOOTER CREDIT ══ */
+    .pixels-credit { background: rgba(0,2,10,0.85); border-top: 1px solid rgba(201,165,90,0.12); padding: 16px 24px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .pixels-credit span { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(240,232,213,0.35); font-weight: 400; }
+    .pixels-credit a { text-decoration: none; color: rgba(201,165,90,0.5); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; transition: color .3s; }
+    .pixels-credit a:hover { color: #C9A55A; }
+    .pixels-credit img { height: 19px; filter: opacity(.6); transition: filter .3s; }
+    .pixels-credit img:hover { filter: opacity(1); }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══ PIXELS NAV ══ -->
+  <nav class="pixels-nav">
+    <a href="#" class="nav-inicio">Inicio</a>
+    <div class="nav-logo">
+      <a href="https://pixelsfotografiayvideo.com/" target="_blank" rel="noopener">
+        <img src="https://ik.imagekit.io/vkah3x39a/favicon_io/letras.png" alt="Pixels Fotografía y Video">
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══ MÚSICA FLOTANTE ══ -->
+  <div id="music-bar" class="music-paused">
+    <button id="music-btn" aria-label="Reproducir/Pausar música">
+      <svg id="music-icon-play" width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="music-icon-pause" width="14" height="14" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <div class="music-info">
+      <div class="music-title">Perfect — Ed Sheeran</div>
+      <div class="music-sub">Nuestra canción 🌿</div>
+    </div>
+    <div class="music-waves" id="music-waves">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <audio id="bg-audio" loop preload="none">
+    <source src="https://yendo.com.ar/wp-content/uploads/2025/05/Paradise-Coldplay-Fingerstyle-Guitar.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" style="padding-top:130px;">
+    <div class="hero-monogram">M&amp;C</div>
+    <p class="hero-names">Marcos <span class="hero-ampersand">&amp;</span> Carolina</p>
+    <p class="hero-date">☽ &nbsp; 13 · 02 · 2027 &nbsp; ☾</p>
+
+    <div class="divider-leaf"><span>✦</span></div>
+
+    <span class="hero-tag">¡Nos casamos!</span>
+
+    <div class="countdown" id="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-dias">--</span><span class="cd-label">Días</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-horas">--</span><span class="cd-label">Horas</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-min">--</span><span class="cd-label">Min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-seg">--</span><span class="cd-label">Seg</span></div>
+    </div>
+
+    <div class="scroll-cue">
+      <span>Deslizá</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ══ FECHA ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <p class="section-label">La fecha</p>
+    <h2 class="section-title">Febrero 2027</h2>
+    <p class="section-body">Marcá el día en tu calendario y reservá esa fecha especial para nosotros.</p>
+
+    <div class="calendar-widget">
+      <div class="cal-header">Febrero 2027</div>
+      <div class="cal-grid">
+        <div class="cal-day-name">D</div>
+        <div class="cal-day-name">L</div>
+        <div class="cal-day-name">M</div>
+        <div class="cal-day-name">M</div>
+        <div class="cal-day-name">J</div>
+        <div class="cal-day-name">V</div>
+        <div class="cal-day-name">S</div>
+        <!-- Feb 2027 empieza el lunes (índice 1) -->
+        <div class="cal-day empty"></div>
+        <div class="cal-day">1</div>
+        <div class="cal-day">2</div>
+        <div class="cal-day">3</div>
+        <div class="cal-day">4</div>
+        <div class="cal-day">5</div>
+        <div class="cal-day">6</div>
+        <div class="cal-day">7</div>
+        <div class="cal-day">8</div>
+        <div class="cal-day">9</div>
+        <div class="cal-day">10</div>
+        <div class="cal-day">11</div>
+        <div class="cal-day">12</div>
+        <div class="cal-day highlight">13</div>
+        <div class="cal-day">14</div>
+        <div class="cal-day">15</div>
+        <div class="cal-day">16</div>
+        <div class="cal-day">17</div>
+        <div class="cal-day">18</div>
+        <div class="cal-day">19</div>
+        <div class="cal-day">20</div>
+        <div class="cal-day">21</div>
+        <div class="cal-day">22</div>
+        <div class="cal-day">23</div>
+        <div class="cal-day">24</div>
+        <div class="cal-day">25</div>
+        <div class="cal-day">26</div>
+        <div class="cal-day">27</div>
+        <div class="cal-day">28</div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+      </div>
+    </div>
+
+    <!-- Botón Agregar al Calendario -->
+    <div class="cal-buttons">
+      <button class="cal-btn cal-btn-google" id="btn-add-cal" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="4" width="18" height="17" rx="2" stroke="white" stroke-width="1.8" fill="none"/>
+          <path d="M3 9h18" stroke="white" stroke-width="1.8"/>
+          <path d="M8 2v4M16 2v4" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M12 13v4M10 15h4" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        Agregar al Calendario
+      </button>
+      <p class="cal-btn-label">📅 Guardá la fecha para que no se te pase</p>
+    </div>
+
+    <!-- Modal selector de calendario -->
+    <div id="cal-modal-overlay" style="display:none;position:fixed;inset:0;z-index:19999;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;">
+      <div id="cal-modal-sheet" style="background:#f7f4ef;border-radius:24px 24px 0 0;padding:28px 24px 40px;width:100%;max-width:480px;transform:translateY(100%);transition:transform .35s cubic-bezier(.32,1,.23,1);">
+        <div style="width:40px;height:4px;background:rgba(0,0,0,.15);border-radius:2px;margin:0 auto 24px;"></div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#4a6741;text-align:center;margin-bottom:6px;font-style:italic;">Guardá la fecha 💍</p>
+        <p style="font-size:13px;color:#8b7355;text-align:center;letter-spacing:.08em;margin-bottom:28px;">13 de Febrero · 2027</p>
+        <a id="cal-google-link" href="#" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:14px;background:#4a6741;color:#fff;border-radius:16px;padding:16px 20px;margin-bottom:12px;text-decoration:none;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;letter-spacing:.08em;transition:opacity .2s;">
+          <svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="white"/><path d="M34 6H14L6 14v20l8 8h20l8-8V14l-8-8z" fill="#4285F4"/><path d="M34 6l8 8h-8V6z" fill="#1A73E8"/><rect x="16" y="22" width="16" height="4" rx="2" fill="white"/><rect x="22" y="16" width="4" height="16" rx="2" fill="white"/></svg>
+          <div><div style="font-weight:600;">Google Calendar</div><div style="font-size:11px;opacity:.75;font-weight:300;letter-spacing:.05em;">Se abre en tu navegador</div></div>
+          <svg style="margin-left:auto;opacity:.5;" width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        <button id="cal-apple-btn" type="button"
+           style="display:flex;align-items:center;gap:14px;background:#fff;color:#2c2c2c;border:1.5px solid #c8d8c2;border-radius:16px;padding:16px 20px;margin-bottom:20px;width:100%;text-align:left;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;letter-spacing:.08em;cursor:pointer;transition:background .2s;">
+          <svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#fff" stroke="#ddd"/><rect x="8" y="10" width="32" height="28" rx="4" fill="#fff" stroke="#c8d8c2" stroke-width="2"/><path d="M8 18h32" stroke="#c8d8c2" stroke-width="2"/><path d="M16 6v8M32 6v8" stroke="#8b7355" stroke-width="2" stroke-linecap="round"/><text x="24" y="33" text-anchor="middle" font-size="11" font-weight="700" fill="#4a6741" font-family="sans-serif">13</text></svg>
+          <div><div style="font-weight:600;">Apple / iCloud Calendar</div><div style="font-size:11px;opacity:.55;font-weight:300;letter-spacing:.05em;">Descarga el archivo .ics</div></div>
+          <svg style="margin-left:auto;opacity:.3;" width="16" height="16" fill="none" stroke="#2c2c2c" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <button id="cal-modal-close" type="button"
+          style="width:100%;padding:14px;background:transparent;border:none;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#8b7355;cursor:pointer;">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EL LUGAR ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <div class="lugar-card">
+      <p class="section-label">El Lugar</p>
+      <h2 class="section-title">Salón La Giralda Eventos</h2>
+      <p class="section-body">Nos vemos ahí para celebrar juntos este día tan especial.</p>
+      <a class="map-btn" href="https://maps.app.goo.gl/UBCXURdTcuzwUFmS6" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        ¿Cómo llegar?
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ MENÚ & DIETA ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <div class="card">
+      <p class="section-label">Menú &amp; Dieta</p>
+      <h2 class="section-title">Elegí tu plato</h2>
+      <p class="section-body">Ayudanos a elegir tu plato y a conocer si tenés alguna restricción alimentaria.</p>
+      <a class="btn-primary" href="https://api.whatsapp.com/send?phone=543511846916&text=%F0%9F%8D%BD%EF%B8%8F+Hola+Carolina%21+Quiero+completar+mi+elección+de+menú.+Mi+nombre+es%3A+" target="_blank" rel="noopener">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+        Completar Formulario
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ PISTA DE BAILE ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <div class="card">
+      <p class="section-label">Pista de Baile</p>
+      <h2 class="section-title">¡Que no pares de bailar!</h2>
+      <p class="section-body">Queremos que la fiesta sea perfecta. Sugerí tu canción favorita para escucharla esa noche.</p>
+      <a class="btn-primary" href="https://api.whatsapp.com/send?phone=543511846916&text=%F0%9F%8E%B5+Hola+Carolina%21+Quiero+sugerir+una+canci%C3%B3n+para+la+fiesta%3A+" target="_blank" rel="noopener">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        Sugerir Canción
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ VALOR DE LA TARJETA ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <p class="section-label">Valor de la Tarjeta</p>
+    <h2 class="section-title">Precio por persona</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--crema-oscura);border-radius:20px;overflow:hidden;background:var(--blanco);margin-top:24px;">
+      <div style="padding:28px 16px;text-align:center;border-right:1px solid var(--crema-oscura);">
+        <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--marron);margin-bottom:12px;">Mayores</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--verde);font-weight:400;">$160.000</p>
+      </div>
+      <div style="padding:28px 16px;text-align:center;border-right:1px solid var(--crema-oscura);">
+        <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--marron);margin-bottom:12px;">Menores (5–11 años)</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--verde);font-weight:400;">$85.000</p>
+      </div>
+      <div style="padding:28px 16px;text-align:center;">
+        <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--marron);margin-bottom:12px;">Después de las 12</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--verde);font-weight:400;">$110.000</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ALOJAMIENTO ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <div class="aloj-card">
+      <div style="font-size:36px;">🏨</div>
+      <p class="section-label" style="margin-top:12px;">Alojamiento</p>
+      <h2 class="section-title" style="text-align:center;">¿Dónde me puedo hospedar?</h2>
+      <p class="section-body" style="text-align:center;margin-top:12px;">Te sugerimos alojamientos cerca del evento. Hacé clic para ver cómo llegar:</p>
+      <div class="hotel-list">
+        <a class="hotel-item" href="https://maps.app.goo.gl/kCyF2zBjEdNVhXaJ8" target="_blank" rel="noopener">
+          Loft de Montaña
+          <span>Ver en Google Maps</span>
+        </a>
+        <a class="hotel-item" href="https://maps.app.goo.gl/EAndZf4BtxTBPNhV8" target="_blank" rel="noopener">
+          Hotel San Pedro
+          <span>Ver en Google Maps</span>
+        </a>
+        <a class="hotel-item" href="https://maps.app.goo.gl/FNq9WjJB4xazUPZJ9" target="_blank" rel="noopener">
+          Vista Sol
+          <span>Ver en Google Maps</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOTOS PRE-BODA ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <div class="slideshow-section reveal">
+    <div class="slideshow-header">
+      <p class="section-label">Sesión pre-boda</p>
+      <h2 class="section-title">Nuestra historia</h2>
+      <p class="section-body">Algunos momentos de nuestro camino juntos.</p>
+    </div>
+    <div class="slideshow-track-wrap">
+      <button class="slide-btn prev" id="prevBtn" aria-label="Anterior">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="slideshow-track" id="track">
+        <div class="slide"><img src="https://ik.imagekit.io/vkah3x39a/book%20bajo/Pixels%20Fotograf%C3%ADa%20y%20Video-17.jpg" loading="lazy" alt="Marcos y Carolina 1"></div>
+        <div class="slide"><img src="https://ik.imagekit.io/vkah3x39a/book%20bajo/Pixels%20Fotograf%C3%ADa%20y%20Video-5.jpg" loading="lazy" alt="Marcos y Carolina 2"></div>
+        <div class="slide"><img src="https://ik.imagekit.io/vkah3x39a/book%20bajo/Pixels%20Fotograf%C3%ADa%20y%20Video-18.jpg" loading="lazy" alt="Marcos y Carolina 3"></div>
+        <div class="slide"><img src="https://ik.imagekit.io/vkah3x39a/book%20bajo/Pixels%20Fotograf%C3%ADa%20y%20Video-20.jpg" loading="lazy" alt="Marcos y Carolina 4"></div>
+        <div class="slide"><img src="https://ik.imagekit.io/vkah3x39a/book%20bajo/Pixels%20Fotograf%C3%ADa%20y%20Video-19.jpg" loading="lazy" alt="Marcos y Carolina 5"></div>
+        <div class="slide"><img src="https://ik.imagekit.io/vkah3x39a/book%20bajo/Pixels%20Fotograf%C3%ADa%20y%20Video-8.jpg" loading="lazy" alt="Marcos y Carolina 6"></div>
+        <div class="slide"><img src="https://ik.imagekit.io/vkah3x39a/book%20bajo/Pixels%20Fotograf%C3%ADa%20y%20Video-3.jpg" loading="lazy" alt="Marcos y Carolina 7"></div>
+      </div>
+      <button class="slide-btn next" id="nextBtn" aria-label="Siguiente">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="slideshow-dots" id="dots"></div>
+  </div>
+
+  <!-- ══ DRESS CODE ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <p class="section-label">¿Qué me pongo?</p>
+    <h2 class="section-title">Dress Code</h2>
+    <div class="dress-card">
+      <div class="dress-top">
+        <div class="dress-icon">👔</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;color:#fff;font-weight:300;">Elegante</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.75);letter-spacing:.12em;text-transform:uppercase;margin-top:6px;">El dress code de nuestra boda</p>
+        <div class="dress-palette">
+          <div class="palette-dot" style="background:#b8d8b0;" title="Verde menta"></div>
+          <div class="palette-dot" style="background:#6b9e65;" title="Verde medio"></div>
+          <div class="palette-dot" style="background:#3d5c38;" title="Verde oscuro"></div>
+          <div class="palette-dot" style="background:#f5f5f5;" title="Blanco"></div>
+          <div class="palette-dot" style="background:#8b6f47;" title="Marrón"></div>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;">Paleta de colores sugerida</p>
+      </div>
+      <div class="dress-bottom">
+        <p class="dress-label-small">Por favor evitar</p>
+        <div class="dress-chips">
+          <span class="chip avoid">Blanco total</span>
+          <span class="chip avoid">Verde oliva</span>
+          <span class="chip avoid">Beige</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INSTAGRAM WALL ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <div class="instagram-card">
+      <div style="font-size:36px;">📷</div>
+      <p class="section-label" style="margin-top:12px;">Nuestro Instagram Wall</p>
+      <div class="instagram-handle">@bodacaroymarcos</div>
+      <p class="section-body">¡No pueden faltar los recuerdos!<br>Seguinos y etiquetanos en tus fotos y videos</p>
+      <div class="instagram-placeholder">
+        <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DATOS BANCARIOS ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0">
+    <p class="section-label">Para nosotros lo más importante es tu presencia</p>
+    <h2 class="section-title">Datos bancarios</h2>
+    <p class="section-body">Si quisieras hacernos un regalo, te dejamos nuestros datos.</p>
+    <div class="banco-card">
+      <div class="banco-row">
+        <span class="banco-key">Alias</span>
+        <span class="banco-val">marcos.caro.27</span>
+      </div>
+      <div class="banco-row">
+        <span class="banco-key">Titular</span>
+        <span class="banco-val">Marcos Carranza</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONFIRMACIÓN ══ -->
+  <div class="sep reveal"><div class="sep-line"><span class="sep-icon">🌿</span></div></div>
+
+  <section class="reveal" style="padding-top:0; padding-bottom: 100px;">
+    <div class="card" style="text-align:center;">
+      <p class="section-label">¡Los esperamos!</p>
+      <h2 class="section-title" style="text-align:center;">Confirmá tu asistencia</h2>
+      <p class="section-body" style="text-align:center;">Por favor confirmá tu asistencia con anticipación.<br>Recordá enviar el comprobante a cualquiera de los dos.</p>
+      <a class="btn-primary" href="https://api.whatsapp.com/send?phone=543511846916&text=%E2%9C%85+Hola+Carolina%21+Confirmo+mi+asistencia+a+tu+boda.%0AMi+nombre+es%3A+%0AQuiero+pedir+estas+tarjetas%3A+" target="_blank" rel="noopener">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L0 24l6.335-1.502A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.988-1.362l-.357-.212-3.76.892.947-3.664-.233-.374A9.795 9.795 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Confirmar a la novia
+      </a>
+      <a class="btn-ghost" href="https://api.whatsapp.com/send?phone=5416584165188&text=%E2%9C%85+Hola+Marcos%21+Confirmo+mi+asistencia+a+tu+boda.%0AMi+nombre+es%3A+%0AQuiero+pedir+estas+tarjetas%3A+" target="_blank" rel="noopener">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L0 24l6.335-1.502A11.935 11.935 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.988-1.362l-.357-.212-3.76.892.947-3.664-.233-.374A9.795 9.795 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Confirmar al novio
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer style="background: var(--verde);">
+    <div class="footer-content">
+      <div class="foot-title">Marcos &amp; Carolina</div>
+      <div class="foot-date">13 · 02 · 2027</div>
+      <small>Hecho con amor para nuestra Boda 🌿</small>
+    </div>
+  </footer>
+
+  <!-- ══ PIXELS CREDIT ══ -->
+  <div class="pixels-credit">
+    <span>Invitación digital por</span>
+    <a href="https://pixelsfotografiayvideo.com/" target="_blank" rel="noopener">
+      <img src="https://ik.imagekit.io/vkah3x39a/favicon_io/letras.png" alt="Pixels">
+    </a>
+    <a href="https://pixelsfotografiayvideo.com/" target="_blank" rel="noopener">Pixels Fotografía y Video</a>
+    <span>·</span>
+    <a href="https://www.instagram.com/pixels_fotografia_y_video/" target="_blank" rel="noopener">@pixels_fotografia_y_video</a>
+    <span>·</span>
+    <a href="tel:+5493512518671">351 251 8671</a>
+  </div>
+
+  <script>
+    // ── COUNTDOWN ──
+    const target = new Date('2027-02-13T20:00:00');
+    function update() {
+      const now  = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:28px;color:var(--verde);font-style:italic">¡Hoy es el gran día! 🎉</p>';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-dias').textContent  = String(d).padStart(2,'0');
+      document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-min').textContent   = String(m).padStart(2,'0');
+      document.getElementById('cd-seg').textContent   = String(s).padStart(2,'0');
+    }
+    update();
+    setInterval(update, 1000);
+
+    // ── SLIDESHOW ──
+    const track    = document.getElementById('track');
+    const slides   = track.querySelectorAll('.slide');
+    const dotsWrap = document.getElementById('dots');
+    const total    = slides.length;
+    let   current  = 0;
+    let   autoTimer;
+
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Foto ' + (i+1));
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+
+    function slideWidth() { return slides[0].offsetWidth + 14; }
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = `translateX(-${current * slideWidth()}px)`;
+      dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+    document.getElementById('prevBtn').addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    document.getElementById('nextBtn').addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) { goTo(dx < 0 ? current + 1 : current - 1); resetAuto(); }
+    });
+    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 3800); }
+    resetAuto();
+
+    // ── REVEAL ──
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── MUSIC PLAYER ──
+    const audio     = document.getElementById('bg-audio');
+    const musicBtn  = document.getElementById('music-btn');
+    const iconPlay  = document.getElementById('music-icon-play');
+    const iconPause = document.getElementById('music-icon-pause');
+    const musicBar  = document.getElementById('music-bar');
+
+    function setPlaying(playing) {
+      iconPlay.style.display  = playing ? 'none' : '';
+      iconPause.style.display = playing ? ''     : 'none';
+      musicBar.classList.toggle('music-paused', !playing);
+    }
+    musicBtn.addEventListener('click', () => {
+      if (audio.paused) { audio.play().then(() => setPlaying(true)).catch(() => {}); }
+      else { audio.pause(); setPlaying(false); }
+    });
+    document.addEventListener('click', function autoplay() {
+      if (audio.paused) { audio.play().then(() => setPlaying(true)).catch(() => {}); }
+      document.removeEventListener('click', autoplay);
+    }, { once: true });
+
+    // ── CALENDAR ──
+    const EVENT = {
+      title:       'Boda Marcos & Carolina 💍',
+      description: 'Boda de Marcos y Carolina — By Pixels fotografía y video. ¡Los esperamos para celebrar juntos!',
+      location:    'Córdoba, Argentina',
+      startUTC:    '20270213T230000Z',
+      endUTC:      '20270214T040000Z',
+    };
+
+    function buildICS() {
+      const stamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+      return [
+        'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ByPixels//BodaMarcosCaro//ES',
+        'CALSCALE:GREGORIAN','METHOD:PUBLISH',
+        'BEGIN:VEVENT','UID:boda-marcos-carolina-2027@bypixels','DTSTAMP:'+stamp,
+        'DTSTART:'+EVENT.startUTC,'DTEND:'+EVENT.endUTC,
+        'SUMMARY:'+EVENT.title,'DESCRIPTION:'+EVENT.description,'LOCATION:'+EVENT.location,
+        'STATUS:CONFIRMED',
+        'BEGIN:VALARM','TRIGGER:-P7D','ACTION:DISPLAY','DESCRIPTION:La boda de Marcos y Carolina es en 7 dias!','END:VALARM',
+        'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:Manana es la boda de Marcos y Carolina!','END:VALARM',
+        'END:VEVENT','END:VCALENDAR'
+      ].join('\r\n');
+    }
+
+    const googleURL = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text='     + encodeURIComponent(EVENT.title)
+      + '&dates='    + EVENT.startUTC + '/' + EVENT.endUTC
+      + '&details='  + encodeURIComponent(EVENT.description)
+      + '&location=' + encodeURIComponent(EVENT.location);
+
+    document.getElementById('cal-google-link').href = googleURL;
+
+    const overlay = document.getElementById('cal-modal-overlay');
+    const sheet   = document.getElementById('cal-modal-sheet');
+
+    function openModal() {
+      overlay.style.display = 'flex';
+      requestAnimationFrame(() => requestAnimationFrame(() => { sheet.style.transform = 'translateY(0)'; }));
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      sheet.style.transform = 'translateY(100%)';
+      document.body.style.overflow = '';
+      setTimeout(() => { overlay.style.display = 'none'; }, 360);
+    }
+    document.getElementById('btn-add-cal').addEventListener('click', openModal);
+    document.getElementById('cal-modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+
+    const icsContent = buildICS();
+    const icsLink = document.createElement('a');
+    icsLink.download = 'boda-marcos-carolina.ics';
+    icsLink.style.display = 'none';
+    document.body.appendChild(icsLink);
+
+    function triggerICS() {
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      if (isIOS) {
+        const dataURI = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+        const win = window.open(dataURI, '_blank');
+        if (!win || win.closed || typeof win.closed === 'undefined') { icsLink.href = dataURI; icsLink.click(); }
+      } else {
+        try {
+          const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          icsLink.href = url; icsLink.click();
+          setTimeout(() => URL.revokeObjectURL(url), 500);
+        } catch(err) {
+          icsLink.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+          icsLink.click();
+        }
+      }
+    }
+    document.getElementById('cal-apple-btn').addEventListener('click', function() {
+      triggerICS();
+      closeModal();
+    });
+  </script>
+</body>
+</html>
